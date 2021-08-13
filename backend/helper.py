@@ -1,5 +1,6 @@
 from typing import List
 import random
+import json
 
 import pandas as pd
 
@@ -17,10 +18,22 @@ def shuffle(type: str) -> List[dict]:
     return choices
 
 def transform(file:str) -> List[dict]:
-    df = pd.read_excel(file)
+    drop_cols = ['序号']
+    reduce_key = ['菜名']
+    owner = "user@example.com.au"
+    df = (pd.read_excel(file)
+          .drop(drop_cols, axis=1)
+          .dropna(how="all")
+          .ffill()
+          )
 
+    df['ingredients'] = df.apply(lambda x:{'name':x['配料'],'measurement':x['用量'],'unit':x['单位']}, axis=1)
+    reduce = df.groupby(reduce_key)['ingredients'].apply(list)
+
+    data = json.loads(reduce.to_frame().reset_index().assign(owner=owner).to_json(orient="records"))
+    return data
 
 
 if __name__ == '__main__':
-    choices = shuffle("lunch")
-    print(choices)
+    from pprint import pprint
+    pprint(transform('../../炒菜谱.xlsx'))
