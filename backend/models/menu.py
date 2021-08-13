@@ -19,7 +19,7 @@ class MenuSchema(BaseModel):
     owner: str
     followers: Optional[List[str]]
     type: Optional[List[str]]
-    ingredients: List[dict]
+    ingredients: List[Ingredient]
     createAt: str
     updateAt: str
 
@@ -43,7 +43,7 @@ class UpdateMenuSchema(BaseModel):
     owner: Optional[str]
     followers: Optional[str]
     type: Optional[List[str]]
-    ingredients: Optional[List[dict]]
+    ingredients: Optional[List[Ingredient]]
     updateAt: Optional[str]
 
     class Config:

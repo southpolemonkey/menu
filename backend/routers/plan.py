@@ -18,12 +18,12 @@ router = APIRouter()
 /plan/party/
 """
 
-@router.get("/weekly", response_description="retrieve all weekly plans")
-def get_all_weekly_plan():
-    plans = []
+@router.get("/", response_description="retrieve all plans")
+def get_all_plan():
+    plans = ""
     return ResponseModel(plans, "Retrieve all plans")
 
-@router.get("/weekly/{id}", response_description="retrieve a single weekly plan")
-def get_single_weekly_plan(id: str):
-    plan = []
+@router.get("/", response_description="retrieve a single plan")
+def get_single_plan(id: str):
+    plan = ""
     return ResponseModel(plan, "Retrieve plan")

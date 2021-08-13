@@ -1,7 +1,7 @@
 import enum
 from typing import Optional, List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 from .menu import MenuSchema
 
@@ -14,22 +14,16 @@ class Day(enum.Enum):
     SAT = 6
     SUN = 7
 
-class Plan:
-    day: Day
-    breakfast: List[MenuSchema]
-    lunch: List[MenuSchema]
-    dinner: List[MenuSchema]
-
 # TODO: CHECK IF FASTAPI HAS DATETIME TYPE
 class WeeklyPlanSchema(BaseModel):
     id: str
-    owner: str
+    owner: EmailStr
     numGuests: int
     planStartDate: str
     planEndDate: str
     createAt: str
     updateAt: str
-    plans: List[Plan]
+    plans: str
 
     class Config:
         arbitrary_types_allowed = True
@@ -103,7 +97,7 @@ class PartyPlanSchema(BaseModel):
     occasion: Optional[str]
     createAt: str
     updateAt: str
-    plans: List[Plan]
+    plans: List[dict]
 
     class Config:
         arbitrary_types_allowed = True
@@ -116,7 +110,24 @@ class PartyPlanSchema(BaseModel):
                 "occasion": "中秋节",
                 "createAt": "2021-08-03 16:41:48.847402",
                 "updateAt": "2021-08-03 16:41:48.847402",
-                "plans": []
+                "plans": [
+                    {'type': '冷菜',
+                     'menu': [
+                         {
+                             "id": 3,
+                             "name": "清蒸带鱼",
+                             "owner": "user@example.com",
+                             "type": ["dinner"],
+                             "ingredients": [
+                                 {"name": "带鱼", "measurement": "500", "units": "g"},
+                                 {"name": "葱姜", "measurement": "20", "units": "g"},
+                             ],
+                             "createAt": "2021-08-03 16:41:48.847402",
+                             "updateAt": "2021-08-03 16:41:48.847402",
+                         }
+                        ]
+                     }
+                ]
             }
         }
 

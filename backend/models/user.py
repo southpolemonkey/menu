@@ -3,9 +3,9 @@ from typing import Optional, List
 from pydantic import BaseModel, EmailStr, Field
 
 class UserSchema(BaseModel):
-    id: str = Field(...)
-    username: str = EmailStr(...)
-    password: str = Field(...)
+    id: str
+    username: str
+    password: str
     createAt: str
     updateAt: str
 
@@ -15,6 +15,8 @@ class UserSchema(BaseModel):
                 "id": "1",
                 "username": "user@exampl.com",
                 "password": "randomtexthere",
+                "createAt": "2021-08-03",
+                "createAt": "2021-08-11",
             }
         }
 

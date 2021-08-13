@@ -13,6 +13,7 @@
 - (Optional) 购物清单按类别排列，提供购物路线
 - (Optional) 支持菜式风格，比如西式，中式，荤菜还是素菜等
 - (Optional) 宴会菜单根据更新宾客数自己调整
+- (Optional) 加入餐厅，酒吧， 甜品店
 
 
 ## System Design
@@ -22,7 +23,6 @@
 - Backend: FastAPI
 - Frontend: React
 - Storage: MongoDB
-
 
 
 ### Sample data

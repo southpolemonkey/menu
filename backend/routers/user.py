@@ -4,6 +4,7 @@ from fastapi.encoders import jsonable_encoder
 from backend.database import (
     add_user,
     update_user,
+    find_user,
 )
 
 from backend.models.user import (
@@ -22,7 +23,7 @@ def get_all_user():
     pass
 
 @router.get("/{id}", response_description="fetch details of single user")
-def find_user(id: str):
+def get_user(id: str):
     if user := find_user(id):
         return ResponseModel(user, "fetch user")
     return ErrorResponseModel(
@@ -38,4 +39,9 @@ def create_new_user(user: UserSchema = Body(...)):
 @router.put("/{id}", response_description="update user details")
 def update_user(id: str, req: UpdateUserSchema = Body(...)):
     pass
+
+@router.delete("/{id}", response_description="delete user")
+def delete_user(id: str):
+    pass
+
 
