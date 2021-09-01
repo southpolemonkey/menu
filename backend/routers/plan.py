@@ -11,6 +11,12 @@ from backend.models.common import (
     ResponseModel,
 )
 
+from backend.db.menu import (
+    add_menu,
+    update_menu,
+    delete_menu,
+)
+
 router = APIRouter()
 
 """

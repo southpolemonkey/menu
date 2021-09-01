@@ -3,10 +3,10 @@ from pydantic import BaseModel, Field
 
 from enum import Enum
 
-class MenuType(Enum):
-    Lunch = 1
-    Breakfast = 2
-    Dinner = 3
+class MenuType(str, Enum):
+    LUNCH = 'lunch'
+    BREAKFAST = 'breakfast'
+    DINNER = 'dinner'
 
 class Ingredient:
     name: str = Field(...)

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from backend.database import (
+from backend.db.menu import (
     add_menu,
     find_menu,
     all_menu,

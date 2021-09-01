@@ -1,34 +1,9 @@
-from enum import Enum
-from typing import Optional, List
+from .database import Collection
 
-from pydantic import BaseModel, Field, EmailStr
-
-from .menu import MenuSchema
-
-class Day(Enum):
-    MONDAY = 1
-    TUESDAY = 2
-    WEDNESDAY = 3
-    THURSDAY = 4
-    FRIDAY = 5
-    SATURDAY = 6
-    SUNDAY = 7
-
-
-class WeeklyPlanSchema(BaseModel):
-    id: str
-    owner: EmailStr
-    numGuests: int
-    planStartDate: str
-    planEndDate: str
-    createAt: str
-    updateAt: str
-    plans: str
-
-    class Config:
-        arbitrary_types_allowed = True
-        schema_extra = {
-            "example": {
+class PlanCollection(Collection):
+    def __init__(self):
+        self.data = [
+            {
                 "id": "b11b9e65-0e57-4c92-882f-616b584c835a",
                 "owner": "username@example.com.au",
                 "numGuests": 3,
@@ -86,48 +61,17 @@ class WeeklyPlanSchema(BaseModel):
                     }
                 ]
             }
+        ]
 
-        }
 
-class PartyPlanSchema(BaseModel):
-    id: str
-    owner: str
-    numGuests: int
-    planStartDate: str
-    occasion: Optional[str]
-    createAt: str
-    updateAt: str
-    plans: List[dict]
+plan_collection = PlanCollection()
 
-    class Config:
-        arbitrary_types_allowed = True
-        schema_extra = {
-            "example": {
-                "id": "b11b9e65-0e57-4c92-882f-616b584c835a",
-                "owner": "username@example.com.au",
-                "numGuests": 4,
-                "planStartDate": "2021-08-02",
-                "occasion": "中秋节",
-                "createAt": "2021-08-03 16:41:48.847402",
-                "updateAt": "2021-08-03 16:41:48.847402",
-                "plans": [
-                    {'type': '冷菜',
-                     'menu': [
-                         {
-                             "id": 3,
-                             "name": "清蒸带鱼",
-                             "owner": "user@example.com",
-                             "type": ["dinner"],
-                             "ingredients": [
-                                 {"name": "带鱼", "measurement": "500", "units": "g"},
-                                 {"name": "葱姜", "measurement": "20", "units": "g"},
-                             ],
-                             "createAt": "2021-08-03 16:41:48.847402",
-                             "updateAt": "2021-08-03 16:41:48.847402",
-                         }
-                        ]
-                     }
-                ]
-            }
-        }
+# Plans collection
+def add_plan(data: dict):
+    pass
 
+def update_plan(id: str, data:dict):
+    pass
+
+def delete_plan(id: str):
+    pass
